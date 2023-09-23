@@ -1,0 +1,22 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: ./frontend # Diretório do Dockerfile do front-end
+    container_name: front # Nome do contêiner
+    ports:
+      - "84:84" # Mapeia a porta 84 do contêiner para a porta 84 do host
+    networks:
+      - app-network
+
+  backend:
+    build:
+      context: ./backend # Diretório do Dockerfile do back-end
+    container_name: back # Nome do contêiner
+    ports:
+      - "83:83" # Mapeia a porta 83 do contêiner para a porta 83 do host
+    networks:
+      - app-network
+
+networks:
+  app-network:

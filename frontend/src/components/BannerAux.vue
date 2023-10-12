@@ -1,44 +1,23 @@
 <template>
     <div id="Banner" class="d-flex-center">
         <div class="img">
-            <img :src="url_casa" alt="Imagem de uma casa bem avaliada">
+            <img :src="url_img" alt="Imagem de uma casa bem avaliada">
             <Forms />
         </div>
     </div>
 </template>
 
 <script>
-import Forms from '@/components/Forms.vue';
 
 export default {
-  name: 'Banner',
-  data() {
-    return {
-      url_casa: './../src/assets/img/banners/1.jpeg',
-      casaIndex: 1,
-      totalCasas: 3, // Total de imagens de casas disponíveis (ajuste conforme necessário)
-    };
-  },
-  methods: {
-    carrossel() {
-      this.casaIndex += 1;
+    name: 'BannerAux',
+    props: {
+        url_img: {
+            type: String
+        }
+    }
+}
 
-      // Verifica se o próximo índice existe, senão, volta ao primeiro índice
-      if (this.casaIndex > this.totalCasas) {
-        this.casaIndex = 1;
-      }
-
-      this.url_casa = `../../public/assets/img/top-casas/casa${this.casaIndex}.jpg`;
-    },
-  },
-  // created() {
-  //   // Define o intervalo de tempo (por exemplo, 5 segundos)
-  //   setInterval(this.carrossel, 5000); // 5000 milissegundos = 5 segundos
-  // },
-  components: {
-    Forms
-  }
-};
 </script>
 
 

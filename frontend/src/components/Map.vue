@@ -76,9 +76,16 @@ export default {
 </script>
 
 <style scoped>
-
+*{
+    z-index: 1 !important; 
+}
 div{
   width: 100% !important;
+  transition: .5s ease all !important;
+}
+div:hover{
+    transition: .5s ease all !important;
+    transform: scale(1.01);
 }
 
 </style>

@@ -42,7 +42,7 @@ export default defineComponent({
       },
       {
         name: "CONTATOS",
-        path: "/media",
+        path: "/contato",
       },
     ]);
     const navConfig = ref({
@@ -56,7 +56,7 @@ export default defineComponent({
 
     const btnConfig = ref({
       btnLink: true,
-      btnUrl: "https://dhaniel.disha.page",
+      btnUrl: "https://www.linkedin.com/in/francisco-carlos-609192142/",
       btnText: "Area do Cliente",
       btnBg: "#002289",
       btnTextColor: "white",
@@ -100,8 +100,8 @@ export default defineComponent({
 });
 </script>
 <style scoped>
-*{
-  z-index: 2;
+*, .links{
+  z-index: 2 !important;
 }
 .link:hover{
     color: #f7931d !important;

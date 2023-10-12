@@ -1,0 +1,20 @@
+# Use uma imagem base Node.js
+FROM node:14
+
+# Defina o diretório de trabalho no contêiner para o aplicativo Vue.js
+WORKDIR /app
+
+# Copie o arquivo package.json e package-lock.json (se existir)
+COPY frontend/package*.json ./
+
+# Instale as dependências do projeto Vue.js
+RUN npm install
+
+# Copie o código-fonte do aplicativo Vue.js para o contêiner
+COPY frontend/ .
+
+# Exponha a porta 8080 para o servidor de desenvolvimento do Vue.js
+EXPOSE 5173
+
+# Comando para iniciar o servidor de desenvolvimento do Vue.js
+CMD [ "npm", "run", "dev" ]

@@ -8,8 +8,14 @@
             <div v-show="textoForm">{{textoForm}}</div>
             <input type="text" v-model="dados.nome" :v-bind="dados.nome" placeholder="Insira seu nome..." required>
             <input type="email" v-model="dados.email" :v-bind="dados.email" placeholder="Insira seu email..." required>
-            <input type="number" v-model="dados.cell" :v-bind="dados.cell" placeholder="Insira seu melhor celular..." required>
+            <input v-show="dados.email" type="number" v-model="dados.cell" :v-bind="dados.cell" placeholder="Insira seu melhor celular..." required>
             <input maxlength="7" type="text" v-model="dados.placa" :v-bind="dados.placa" placeholder="Insira a Placa do Veículo..." required>
+            <select id="selectAssunto" v-model="dados.assunto">
+                <option v-for="item in assuntos" :key="item" :value="item">{{item}}</option>
+            </select>
+            <select v-show="dados.cell" id="selectVeiculo" v-model="dados.veiculo">
+                <option v-for="item in veiculos" :key="item" :value="item">{{item}}</option>
+            </select>
             <input @click="enviar($event)" type="button" value="Solicitar Cotação" >
         </form>
     </div>
@@ -32,11 +38,38 @@ export default{
                 nome: null,
                 email: null,
                 cell: null,
-                placa: null
-            }
+                placa: null,
+                veiculo: null,
+                assunto: null
+            },
+            veiculos: [
+                'Carro',
+                'Moto',
+                'Caminhão',
+                'Van',
+                'Caminhonete',
+                'Ciclomotor',
+            ],
+            assuntos: [
+                'Solicitar Cotação',
+                'Seguro',
+                'Cobertura e Seguro'
+                
+            ]
+            
         }
     },
    methods: {
+    capitalized(str) {
+        if (str && typeof str === 'string') {
+        return str.charAt(0).toUpperCase() + (str.slice(1)).toLowerCase();
+        } else {
+            console.error("A variável str não é uma string ou é nula.");
+            return 'error';
+        }
+
+        
+    },
     verificar(value, key) {
         if (!value) {
         let fieldName = key === 'cell' ? 'celular' : key;
@@ -72,16 +105,75 @@ export default{
         this.buscarDados();
         }
     },
-    async buscarDados() {
-  try {
-    const response = await axios.get('/private/api/sendEmail.php'); // Caminho correto para a API
-    this.dados = response.data;
-    console.log('Dados da API:', this.dados);
-  } catch (error) {
-    console.error('Erro ao buscar dados da API:', error);
-  }
-},
+    
+   retornoEmail(response) {
+    
+    // Verifique o código de status para determinar o ícone e a mensagem
+    let icon = response.dados.status[0] === 1 ? 'error' : 'success';
+    let mensagemErro = response.dados.status[1];
+    
+    // Divida a mensagem de erro para obter o título e o texto
+    let mensagemSplit = (mensagemErro.replace(')', '')).split('(');
+    mensagemSplit.forEach(element => {
+        this.capitalized(element);
+    });
+    let titulo = this.capitalized(mensagemSplit[0]);
+    
+    Swal.fire({
+        icon: icon,
+        title: titulo,
+        text: mensagemSplit[1] || '', // Se não houver texto entre parênteses, deixe vazio
+        showConfirmButton: false,
+        timer: 1500
 
+    });
+    },
+    async buscarDados() {
+       
+
+        this.dados.placa = this.dados.placa.toUpperCase();
+        this.dados.nome = this.capitalized(this.dados.nome);
+        this.dados.email = this.dados.email.toLowerCase();
+         console.log('dados: ', this.dados);
+        try {
+            var url = `http://localhost:85/private/sendEmail.php?nome=${this.dados.nome}&email=${this.dados.email}&cell=${this.dados.cell}&placa=${this.dados.placa}&veiculo=${this.dados.veiculo}&assunto=${this.dados.assunto}`;
+            const response = await axios.get(url); // Caminho correto para a API
+
+            const apiResponse =  response.data;
+            this.retornoEmail(apiResponse);
+        } catch (error) {
+            console.error('Erro ao buscar dados da API:', error);
+        }
+    },
+    },  
+    created() {
+    if (this.assuntos.length > 0) 
+    {
+            this.dados.assunto = this.assuntos[0];
+    }
+    if (this.veiculos.length > 0) 
+    {
+            this.dados.veiculo = this.veiculos[0];
+    }
+    
+    const selectAssunto = document.getElementById('selectAssunto');
+    if (selectAssunto) {
+        selectAssunto.addEventListener('change', (event) => {
+            this.dados.assunto = event.target.value;
+        });
+    } 
+    const selectVeiculo = document.getElementById('selectVeiculo');
+    if (selectVeiculo) {
+        selectVeiculo.addEventListener('change', (event) => {
+            this.dados.veiculo = event.target.value;
+        });
+    } 
+
+    document.addEventListener('keyup', (event) => {
+        if (event.key === 'Enter') {
+            this.enviar(event);
+        }
+    });
 }
 
 
@@ -98,12 +190,11 @@ export default{
     left: 70%;
     transform: translate(-50%, 10%);
     min-width: 400px !important;
-    height: 80vh;
     min-height: 600px;
     width: 20vw;
     background-color: var(--azul);
     color: var(--branco);
-    padding: 1rem 1rem;
+    padding: 2rem 1rem !important;
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -142,7 +233,7 @@ h1{
     padding: 0rem 1rem;
 }
 
-#form input{
+#form input, #form select{
     padding: .75rem .5rem;
     border-radius: .5rem;
     border: none;
@@ -171,6 +262,7 @@ h1{
     transition: .5s ease all;
     box-shadow: 1px 1px 5px #333333bc;
     border-radius: 2rem;
+   
     
 }
 #form input[type="button"]:hover{

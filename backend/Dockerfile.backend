@@ -1,0 +1,17 @@
+FROM php:7.2.5-apache-stretch
+
+WORKDIR /var/www/html
+
+RUN docker-php-ext-install pdo pdo_mysql mysqli
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+RUN echo "date.timezone = America/Sao_Paulo" >> /usr/local/etc/php/php.ini
+
+RUN a2enmod rewrite
+RUN service apache2 restart
+
+# Adiciona a configuração para permitir o file_get_contents
+RUN echo "allow_url_fopen = On" >> /usr/local/etc/php/php.ini
+
+CMD ["apache2-foreground"]

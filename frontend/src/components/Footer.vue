@@ -60,9 +60,8 @@
         </div>
     </div>
    <div>
-      <p>Copyright Make Your Burger &copy; {{ new Date().getFullYear() }}</p>
-
-      <div id="footer-icons">
+      
+      <div id="footer-icons" v-show="link_git">
         <img
           @click="accessLink($event)"
           src="@/assets/img/icons/facebook.svg"
@@ -79,6 +78,7 @@
           class="icons"
         />
       </div>
+      <p>Copyright GigaBens &copy; {{ new Date().getFullYear() }}</p>
     </div>
   </footer>
   
@@ -176,7 +176,6 @@ export default {
   align-items: center;
   bottom: 0;
   width: 100%;
-   display: flex;
   flex-wrap: wrap; 
   gap: 10px; 
 }
@@ -211,6 +210,7 @@ export default {
   align-items: center;
   flex-direction: row;
   flex-wrap: wrap;
+  
 }
 
 
@@ -220,6 +220,7 @@ img {
   width: 36px;
   height: 36px;
   filter: drop-shadow(0px 0px 1px #fcba0315);
+  transition: .5s ease all !important;
 }
 
 img:hover {

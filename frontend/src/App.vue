@@ -26,6 +26,25 @@ import Footer from './components/Footer.vue'
   --dark-color: #333;
   --cinza-footer: #857f7f;
 }
+body{
+  overflow-x: hidden;
+  overflow-y: var(--laranja);
+}
+/* Personaliza a barra de rolagem */
+::-webkit-scrollbar {
+    width: 12px; /* Largura da barra de rolagem */
+}
+
+/* Personaliza o polegar da barra de rolagem */
+::-webkit-scrollbar-thumb {
+    background-color: var(--cinza-footer); /* Cor do polegar */
+    border-radius: 6px; /* Borda arredondada do polegar */
+}
+
+/* Personaliza a trilha da barra de rolagem */
+::-webkit-scrollbar-track {
+    background-color: var(--branco); /* Cor da trilha */
+}
 
 #app{
   min-width: 100vw;

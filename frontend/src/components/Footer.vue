@@ -53,7 +53,10 @@
 
 
     </div>
-    
+    <div id="download-area">
+        
+          <GooglePlay />
+    </div>
     <div id="mapa">
         <div class="map">
           <Map :coordenadas="coordenadas"/>
@@ -87,6 +90,7 @@
 <script>
 import Swal from 'sweetalert2'
 import Map from '@/components/Map.vue'
+import GooglePlay from '@/components/GooglePlay.vue'
 
 import "leaflet/dist/leaflet.css";
 
@@ -158,7 +162,8 @@ export default {
     },
   },
   components: {
-    Map
+    Map,
+    GooglePlay
   }
 
 };
@@ -179,6 +184,16 @@ export default {
   flex-wrap: wrap; 
   gap: 10px; 
 }
+#download-area{
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+}
 
 #info, #mapa{
   flex: 1;
@@ -189,6 +204,10 @@ export default {
   flex-direction: column;
   flex-wrap: wrap;
 
+}
+
+#download-area{
+  flex: 0;
 }
 #footer-icons{
   flex: 0;

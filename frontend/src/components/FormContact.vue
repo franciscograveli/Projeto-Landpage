@@ -95,8 +95,14 @@ export default{
                 Swal.showLoading();
             }
         });
-
-        var url = `http://localhost:85/private/sendEmail.php?nome=${this.dados.nome}&email=${this.dados.email}&cell=${this.dados.cell}&assunto=${this.dados.assunto}&msg=${this.dados.msg}&veiculo=`;
+         let url;
+            if (process.env.NODE_ENV === 'production') {
+            // URL de produção
+            url = `https://franciscogaraveli.000webhostapp.com/private/index.php?nome=${this.dados.nome}&email=${this.dados.email}&cell=${this.dados.cell}&assunto=${this.dados.assunto}&msg=${this.dados.msg}&veiculo=`;
+            } else {
+            // URL local para desenvolvimento
+            url = `http://localhost:85/private/SendEmail.php?nome=${this.dados.nome}&email=${this.dados.email}&cell=${this.dados.cell}&assunto=${this.dados.assunto}&msg=${this.dados.msg}&veiculo=`;
+            }
         const response = await axios.get(url); // Caminho correto para a API
 
         // Esconde o modal de loading

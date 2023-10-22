@@ -1,7 +1,7 @@
 <template>
   <div class="home" >
     <VueNavUI  :navLinks="navLinks" :navConfig="navConfig" :btnConfig="btnConfig">
-      <img class="img" src="../assets/img/logo/logo.png" alt="" srcset="" id="logo"/>
+      <img class="img" src="./../../public/assets/img/logo/logo.png" alt="" srcset="" id="logo"/>
     </VueNavUI>
   </div>
 </template>
@@ -15,7 +15,7 @@ export default defineComponent({
   name: "Navbar",
   data() {
     return {
-      url_logo: "../assets/img/logo/logo.png",
+      url_logo: "./../../public/assets/img/logo/logo.png",
     }
   },
   components: {
@@ -34,14 +34,14 @@ export default defineComponent({
       },
       {
         name: "SERVIÇOS",
-        path: "/faqs",
+        path: "/servicos",
       },
       {
         name: "RASTREAMENTO",
-        path: "/more",
+        path: "/rastreador",
       },
       {
-        name: "CONTATOS",
+        name: "CONTATO",
         path: "/contato",
       },
     ]);

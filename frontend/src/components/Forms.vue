@@ -111,6 +111,7 @@ export default{
     // Verifique o código de status para determinar o ícone e a mensagem
     let icon = response.dados.status[0] === 1 ? 'error' : 'success';
     let mensagemErro = response.dados.status[1];
+    console.log('mensagemErro: ', mensagemErro);
     
     // Divida a mensagem de erro para obter o título e o texto
     let mensagemSplit = (mensagemErro.replace(')', '')).split('(');
@@ -136,7 +137,14 @@ export default{
         this.dados.email = this.dados.email.toLowerCase();
          console.log('dados: ', this.dados);
         try {
-            var url = `http://localhost:85/private/sendEmail.php?nome=${this.dados.nome}&email=${this.dados.email}&cell=${this.dados.cell}&placa=${this.dados.placa}&veiculo=${this.dados.veiculo}&assunto=${this.dados.assunto}`;
+            let url;
+            if (process.env.NODE_ENV === 'production') {
+            // URL de produção
+            url = `https://franciscogaraveli.000webhostapp.com/private/SendEmail.php?nome=${this.dados.nome}&email=${this.dados.email}&cell=${this.dados.cell}&placa=${this.dados.placa}&veiculo=${this.dados.veiculo}&assunto=${this.dados.assunto}`;
+            } else {
+            // URL local para desenvolvimento
+            url = `http://localhost:85/private/SendEmail.php?nome=${this.dados.nome}&email=${this.dados.email}&cell=${this.dados.cell}&placa=${this.dados.placa}&veiculo=${this.dados.veiculo}&assunto=${this.dados.assunto}`;
+            }
             const response = await axios.get(url); // Caminho correto para a API
 
             const apiResponse =  response.data;
@@ -261,8 +269,12 @@ h1{
     cursor: pointer;
     transition: .5s ease all;
     box-shadow: 1px 1px 5px #333333bc;
-    border-radius: 2rem;
-   
+    border-radius: 2rem;    
+}
+@media (max-width: 790px){
+    #form input[type="button"]{
+        padding: 1rem 2rem !important;
+    }
     
 }
 #form input[type="button"]:hover{

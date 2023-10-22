@@ -1,7 +1,7 @@
 <template>
     <div id="Banner" class="d-flex-center">
         <div class="img">
-            <img :src="url_casa" alt="Imagem de uma casa bem avaliada">
+            <img :src="url_casa" alt="Banner Principal">
             <Forms />
         </div>
     </div>
@@ -14,9 +14,9 @@ export default {
   name: 'Banner',
   data() {
     return {
-      url_casa: './../src/assets/img/banners/1.jpeg',
+      url_casa: './assets/contentHome/principal/1.png',
       casaIndex: 1,
-      totalCasas: 3, // Total de imagens de casas disponíveis (ajuste conforme necessário)
+      totalCasas: 2, 
     };
   },
   methods: {
@@ -28,13 +28,13 @@ export default {
         this.casaIndex = 1;
       }
 
-      this.url_casa = `../../public/assets/img/top-casas/casa${this.casaIndex}.jpg`;
+      this.url_casa = `./assets/contentHome/principal/${this.casaIndex}.png`;
     },
   },
-  // created() {
-  //   // Define o intervalo de tempo (por exemplo, 5 segundos)
-  //   setInterval(this.carrossel, 5000); // 5000 milissegundos = 5 segundos
-  // },
+  created() {
+    // Define o intervalo de tempo (por exemplo, 5 segundos)
+    setInterval(this.carrossel, 5000); // 5000 milissegundos = 5 segundos
+  },
   components: {
     Forms
   }
@@ -48,12 +48,12 @@ export default {
     top: 0;
     left: 0;
     width: 100%;
-    /* height: 100vh; */
+    height: 100vh; 
 }
 
-@media (min-width: 790px) {
-    #Banner{
-        margin-top: 10vh;
+@media (max-width: 790px) {
+    img{
+        margin-top: 0 !important;
     }
 }
   
@@ -75,9 +75,16 @@ export default {
 
 }
 .img{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    height: 100%;
     width: 100%;
 }
 img{
+    margin-top: 10vh;
     width: 100%;
     height: 100%;
     object-fit: cover;

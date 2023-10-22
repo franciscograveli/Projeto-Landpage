@@ -25,6 +25,7 @@ import Footer from './components/Footer.vue'
   --secondary-color: #fff;
   --dark-color: #333;
   --cinza-footer: #857f7f;
+  --verde-wpp: #4cd137;
 }
 body{
   overflow-x: hidden;

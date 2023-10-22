@@ -1,9 +1,13 @@
 <template>
     <div id="Banner" class="d-flex-center">
+          <div class="textContent">
+         <h1>Benefícios</h1>
+        <p>Conheça os nossos benefícios e saiba como podemos te ajudar.</p>
+     </div>
         <div class="img">
-            <img :src="url_img" alt="Imagem de uma casa bem avaliada">
-            <Forms />
+            <img v-for="url_img in url_img" :key="url_img" :src="url_img" alt="Imagem de uma casa bem avaliada">
         </div>
+       
     </div>
 </template>
 
@@ -12,9 +16,7 @@
 export default {
     name: 'BannerAux',
     props: {
-        url_img: {
-            type: String
-        }
+        url_img: Array
     }
 }
 
@@ -30,38 +32,36 @@ export default {
     /* height: 100vh; */
 }
 
-@media (min-width: 790px) {
-    #Banner{
-        margin-top: 10vh;
-    }
-}
-  
 
-#TopCasas{
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translate(0, -50%);
-    color: var(--white);
-    font-size: 50px;
-    font-weight: bold;
-    text-align: center;
-    width: 30%;
-    min-width: 400px;
-    height: 200px;
-    background-color: rgba(0, 0, 0, 0.756);
-    border-radius: 0 1rem 1rem 0rem;
-
-}
-.img{
+.img {
     width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 1rem 2rem;
 }
 img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
+    max-width: 350px;
 }
+
+@media screen and (min-width: 790px) {
+    .img img {
+        height: auto;
+        object-fit: cover;
+        object-position: center;
+    }
+}
+
+@media screen and (max-width: 790px) {
+    .img img {
+        height: auto;
+        object-fit: cover;
+        object-position: center;
+    }
+}
+
 
 @media screen and (max-width: 600px) {
     #TopCasas{
@@ -69,4 +69,28 @@ img{
     }
 }
 
+.textContent{
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: var(--azul);
+}
+.textContent h1{
+    font-size: calc(2rem + 1vw);
+    font-weight: 700;
+    line-height: 40px;
+    letter-spacing: 3px;
+}
+
+.textContent p{
+    font-size: calc(1rem + 1vw);
+    font-weight: 400;
+    margin-bottom: 1rem;
+    text-align: center;
+}
 </style>

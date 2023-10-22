@@ -6,11 +6,16 @@ require './vendor/phpmailer/phpmailer/src/Exception.php';
 require_once './load-env.php';
 
     use PHPMailer\PHPMailer\PHPMailer;
-    $Nome = getenv('MEU_NOME');
-    $Email = getenv('MEU_EMAIL');
-    $servidorSMTP = getenv('SERVIDOR_SMTP');
-    $senha = getenv('MINHA_SENHA');
-    $logo = getenv('LINK_LOGO_GIGABENS');
+    // $Nome = getenv('MEU_NOME');
+    // $Email = getenv('MEU_EMAIL');
+    // $servidorSMTP = getenv('SERVIDOR_SMTP');
+    // $senha = getenv('MINHA_SENHA');
+    // $logo = getenv('LINK_LOGO_GIGABENS');
+    $Nome = 'GigaBens';
+    $Email = 'junior.js87@gmail.com';
+    $servidorSMTP = 'smtp.gmail.com';
+    $senha = 'qmum mmqo xcoy kqil';
+    $logo = 'https://franciscogaraveli.000webhostapp.com/private/assets/img/logo.png';
     $mailer = new Mailer($Email, $Nome, $servidorSMTP, $senha, $logo);
 
 class Mailer {
@@ -38,8 +43,8 @@ class Mailer {
         $mail->SMTPAuth = true; // Ativar autenticação SMTP
         $mail->Username = $this->meuEmail; // Seu endereço de e-mail
         $mail->Password = $this->senha; // Sua senha de e-mail
-        $mail->SMTPSecure = 'ssl'; // TLS ou SSL
-        $mail->Port = 465; // Porta do servidor SMTP (587 para TLS, 465 para SSL)
+        $mail->SMTPSecure = 'tsl'; // TLS ou SSL
+        $mail->Port = 587; // Porta do servidor SMTP (587 para TLS, 465 para SSL)
 
         // Configurações do e-mail
         $mail->CharSet = 'UTF-8';

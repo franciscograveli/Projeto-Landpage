@@ -25,9 +25,14 @@ if ($email === null || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
 }
 
 $cell = isset($_GET["cell"]) ? $_GET["cell"] : null;
-if ($cell === null || !preg_match("/^\d{11}$/", $cell)) {
-    $errors[] = "O campo celular é inválido (deve conter 10 dígitos numéricos).";
+if ($cell === null || strlen($cell) < 8 || !preg_match("/^(?:\+?\d{0,3}\s?)?(?:\d{4,5}-?\d{4}|\(\d{2,4}\)\s?\d{4,5}-?\d{4})$/", $cell)) {
+    $errors[] = "Por favor, insira um número de celular válido. (O número deve estar no formato local como '98862-6483' ou internacional como '+5532988626483'.)";
 }
+
+
+
+
+
 
 $placa = isset($_GET["placa"]) ? $_GET["placa"] : null;
 if ($placa && !preg_match("/^[A-Z0-9]{7}$/", $placa)) {

@@ -90,7 +90,7 @@ export default{
     enviar(event) {
         event.preventDefault();
         let preenchido = true;
-
+        this.dados.placa = (this.dados.placa).toUpperCase();
         const dadosAux = new Map(Object.entries(this.dados));
         
 
@@ -128,29 +128,47 @@ export default{
         timer: 1500
 
     });
-    },
-    async buscarDados() {
-       
-
-        this.dados.placa = this.dados.placa.toUpperCase();
-        this.dados.nome = this.capitalized(this.dados.nome);
-        this.dados.email = this.dados.email.toLowerCase();
-         console.log('dados: ', this.dados);
-        try {
-            let url;
+    },async buscarDados() {
+    this.dados.nome = this.capitalized(this.dados.nome);
+    this.dados.email = this.dados.email.toLowerCase();
+    console.log('dados: ', this.dados);
+    try {
+        // Exibe o modal de loading
+        const loadingModal = Swal.fire({
+            title: 'Aguarde...',
+            showConfirmButton: false,
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading();
+            }
+        });
+         let url;
             if (process.env.NODE_ENV === 'production') {
             // URL de produção
-            url = `https://franciscogaraveli.000webhostapp.com/private/SendEmail.php?nome=${this.dados.nome}&email=${this.dados.email}&cell=${this.dados.cell}&placa=${this.dados.placa}&veiculo=${this.dados.veiculo}&assunto=${this.dados.assunto}`;
+             url = `https://franciscogaraveliapi.000webhostapp.com/private/index.php?nome=${this.dados.nome}&email=${this.dados.email}&cell=${this.dados.cell}&placa=${this.dados.placa}&veiculo=${this.dados.veiculo}&assunto=${this.dados.assunto}`;
             } else {
             // URL local para desenvolvimento
             url = `http://localhost:85/private/SendEmail.php?nome=${this.dados.nome}&email=${this.dados.email}&cell=${this.dados.cell}&placa=${this.dados.placa}&veiculo=${this.dados.veiculo}&assunto=${this.dados.assunto}`;
             }
-            const response = await axios.get(url); // Caminho correto para a API
+        const response = await axios.get(url); // Caminho correto para a API
 
-            const apiResponse =  response.data;
-            this.retornoEmail(apiResponse);
+        // Esconde o modal de loading
+         loadingModal.close();
+
+        // Processa a resposta da API e exibe o modal Swal
+        this.retornoEmail(response.data);
         } catch (error) {
             console.error('Erro ao buscar dados da API:', error);
+            
+            // Esconde o modal de loading se houver um erro
+            Swal.close();
+
+            // Exibe um alerta de erro ao usuário (você pode personalizar isso conforme necessário)
+            Swal.fire({
+                icon: 'error',
+                title: 'Erro',
+                text: 'Ocorreu um erro ao processar sua solicitação. Por favor, tente novamente mais tarde.'
+            });
         }
     },
     },  
@@ -274,6 +292,7 @@ h1{
 @media (max-width: 790px){
     #form input[type="button"]{
         padding: 1rem 2rem !important;
+        font-size: 1.2rem !important;
     }
     
 }

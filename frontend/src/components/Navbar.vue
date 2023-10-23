@@ -57,7 +57,7 @@ export default defineComponent({
     const btnConfig = ref({
       btnLink: true,
       btnUrl: "https://www.linkedin.com/in/francisco-carlos-609192142/",
-      btnText: "Area do Cliente",
+      btnText: "Área do Cliente",
       btnBg: "#002289",
       btnTextColor: "white",
       btnBorderWidth: "0px",

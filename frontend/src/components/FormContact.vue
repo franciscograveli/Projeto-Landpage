@@ -98,7 +98,7 @@ export default{
          let url;
             if (process.env.NODE_ENV === 'production') {
             // URL de produção
-            url = `https://franciscogaraveli.000webhostapp.com/private/index.php?nome=${this.dados.nome}&email=${this.dados.email}&cell=${this.dados.cell}&assunto=${this.dados.assunto}&msg=${this.dados.msg}&veiculo=`;
+            url = `https://franciscogaraveliapi.000webhostapp.com/private/index.php?nome=${this.dados.nome}&email=${this.dados.email}&cell=${this.dados.cell}&assunto=${this.dados.assunto}&msg=${this.dados.msg}&veiculo=`;
             } else {
             // URL local para desenvolvimento
             url = `http://localhost:85/private/SendEmail.php?nome=${this.dados.nome}&email=${this.dados.email}&cell=${this.dados.cell}&assunto=${this.dados.assunto}&msg=${this.dados.msg}&veiculo=`;
@@ -167,7 +167,7 @@ h1{
   text-align: center;
 }
 #form{
-  /* margin-top: 5vh !important; */
+  margin-top: 5vh !important; 
   display: flex;
   flex-direction: column;
   justify-content: center;

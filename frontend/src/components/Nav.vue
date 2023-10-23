@@ -112,23 +112,23 @@ export default defineComponent({
   background: v-bind("navConfig.navBg");
 }
 /* CSS */
-@keyframes navScrollAnimation {
-    from {
-        padding: 16px;
-        background: #fafafa;
-    }
-    to {
-        padding: 10px;
-        background: #fafafa11;
-    }
-}
+// @keyframes navScrollAnimation {
+//     from {
+//         padding: 16px;
+//         background: #fafafa;
+//     }
+//     to {
+//         padding: 10px;
+//         background: #fafafa11;
+//     }
+// }
 
-.nav-scrolling {
-    animation: navScrollAnimation 0.3s ease;
-    .link{
-    color:#fafafa !important;
-    }
-}
+// .nav-scrolling {
+//     animation: navScrollAnimation 0.3s ease;
+//     .link{
+//     color:#fafafa !important;
+//     }
+// }
 
 @media (max-width: 1400px) {
   .nav {

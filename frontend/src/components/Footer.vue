@@ -64,11 +64,11 @@
     </div>
    <div>
       
-      <div id="footer-icons" v-show="link_git">
+      <div id="footer-icons" v-show="link_facebook && link_insta">
         <img
           @click="accessLink($event)"
           src="@/assets/img/icons/facebook.svg"
-          :data-link="link_git"
+          :data-link="link_facebook"
           alt="GitHub"
           class="icons"
         />
@@ -76,7 +76,7 @@
         <img
           @click="accessLink($event)"
           src="@/assets/img/icons/instagram.svg"
-          :data-link="link_linkedin"
+          :data-link="link_insta"
           alt="LinkedIn"
           class="icons"
         />
@@ -99,8 +99,8 @@ export default {
   name: 'Footer',
   data() {
     return{
-        link_git: 'https://github.com/franciscograveli/franciscograveli',
-        link_linkedin: 'https://www.linkedin.com/in/francisco-carlos-609192142/',
+        link_insta: 'https://instagram.com/',
+        link_facebook: 'https://www.facebook.com/',
         coordenadas: [
           -21.1303,
           -42.3674

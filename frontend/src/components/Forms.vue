@@ -145,7 +145,7 @@ export default{
          let url;
             if (process.env.NODE_ENV === 'production') {
             // URL de produção
-             url = `https://franciscogaraveliapi.000webhostapp.com/private/index.php?nome=${this.dados.nome}&email=${this.dados.email}&cell=${this.dados.cell}&placa=${this.dados.placa}&veiculo=${this.dados.veiculo}&assunto=${this.dados.assunto}`;
+             url = `http://gigabens.com.br/private/index.php?nome=${this.dados.nome}&email=${this.dados.email}&cell=${this.dados.cell}&placa=${this.dados.placa}&veiculo=${this.dados.veiculo}&assunto=${this.dados.assunto}`;
             } else {
             // URL local para desenvolvimento
             url = `http://localhost:85/private/SendEmail.php?nome=${this.dados.nome}&email=${this.dados.email}&cell=${this.dados.cell}&placa=${this.dados.placa}&veiculo=${this.dados.veiculo}&assunto=${this.dados.assunto}`;

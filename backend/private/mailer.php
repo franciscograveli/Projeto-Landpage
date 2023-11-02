@@ -6,16 +6,11 @@ require './vendor/phpmailer/phpmailer/src/Exception.php';
 require_once './load-env.php';
 
     use PHPMailer\PHPMailer\PHPMailer;
-    // $Nome = getenv('MEU_NOME');
-    // $Email = getenv('MEU_EMAIL');
-    // $servidorSMTP = getenv('SERVIDOR_SMTP');
-    // $senha = getenv('MINHA_SENHA');
-    // $logo = getenv('LINK_LOGO_GIGABENS');
-    $Nome = 'GigaBens';
-    $Email = 'junior.js87@gmail.com';
-    $servidorSMTP = 'smtp.gmail.com';
-    $senha = 'qmum mmqo xcoy kqil';
-    $logo = 'https://franciscogaraveli.000webhostapp.com/private/assets/img/logo.png';
+    $Nome = getenv('MEU_NOME');
+    $Email = getenv('MEU_EMAIL');
+    $servidorSMTP = getenv('SERVIDOR_SMTP');
+    $senha = getenv('MINHA_SENHA');
+    $logo = getenv('LINK_LOGO_GIGABENS');
     $mailer = new Mailer($Email, $Nome, $servidorSMTP, $senha, $logo);
 
 class Mailer {

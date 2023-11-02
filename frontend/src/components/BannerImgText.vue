@@ -3,7 +3,7 @@
     'background-image': `url('${icons_Text_bg}')`,
     'background-color': `var(--${bg_color})`
      }">  
-  <div class="img">
+  <div class="img" :id="id">
             
             <img class="img-big" v-show="img" v-for="img in img" :key="img" :src="img" alt="Imagem rastreador">
         
@@ -31,7 +31,8 @@ export default {
         url_img: {},
         bg_color: String,
         color: String,
-        icons_Text_bg: String
+        icons_Text_bg: String,
+        id: String
     },
     data(){
         return {
@@ -126,16 +127,16 @@ img{
 
 .icons-img{
      flex: 0;
-     width: 100px;
+     width: 50px;
      height: auto;
 }
 .iconIMG{
-    height: 100%;
+    height: 50%;
     border-radius: 50rem;
     background-color: var(--laranja);
     padding: 1rem;
-    min-width: 100px;
-    min-height: 100px;
+    min-width: 50px;
+    min-height:50px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -151,7 +152,7 @@ img{
     align-items: center;
 }
 .kit-icon-img img{ 
-    max-width: 50px;
+    max-width: 25px;
     color: var(--branco);
 }
 
@@ -159,7 +160,7 @@ img{
     font-weight: 500;
     color: var(--branco);
     margin: 1rem;
-    font-size: calc(1rem + 0.75vw);
+    font-size: calc(1rem + 0.5vw);
     min-width: 150px;
     flex: 1;
 

@@ -5,9 +5,9 @@
     <div id="beneficios">
     <BannerAux :url_img="links[0]" />
     </div>
-    <BannerImgTextVue :url_img="DadosImgTexto1" bg_color="azul " color="branco"/>
+    <BannerImgTextVue id="rastreador" :url_img="DadosImgTexto1" bg_color="azul " color="branco"/>
     <BannerWpp :wpp="wpp"/>
-    <BannerImgTextVue :url_img="DadosImgTexto2" bg_color="branco" color="primary-color"/>
+    <BannerImgTextVue id="sobre" :url_img="DadosImgTexto2" bg_color="branco" color="primary-color"/>
     
         <!--         <BannerAux :url_img="links[1]" /> -->
         <!-- <BannerAux :url_img="links[2]" />
@@ -49,7 +49,7 @@ export default {
       ],
       icons_Text_bg: `${contentHomePath}laranja/LAR3.png`
     },
-    wpp: '32988626483',
+    wpp: '32988834442',
   };
 },
     components: {

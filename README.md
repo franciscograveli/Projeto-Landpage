@@ -40,5 +40,7 @@ npm run dev
 6. Para compilar a aplicação frontend
 ````
 npm run build
+````
+[Visite a aplicação em produção](http://gigabens.com.br/)
 
 
